@@ -1,0 +1,17 @@
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+httpx>=0.27.0
+pydantic>=2.9.0
+python-dotenv>=1.0.0
+
+# LangChain — no version pins, let pip resolve
+langchain-core>=0.3
+langchain-community>=0.3
+langchain-ollama>=0.2.0
+
+# Tools (langchain-community dependencies)
+ddgs>=6.3.0
+wikipedia>=1.4.0
+
+# Evaluation
+numpy>=1.26.0

@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #080C10;
+  --surface: #0D1117;
+  --panel: #111820;
+  --border: #1E2D3D;
+  --accent: #00D4FF;
+  --green: #00FF9D;
+  --amber: #FFB800;
+  --purple: #A855F7;
+  --red: #FF4545;
+  --muted: #3D5166;
+  --text: #C9D1D9;
+  --dim: #8B949E;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* Terminal glow effects */
+.glow-accent { text-shadow: 0 0 12px var(--accent); }
+.glow-green { text-shadow: 0 0 12px var(--green); }
+.glow-amber { text-shadow: 0 0 12px var(--amber); }
+.glow-purple { text-shadow: 0 0 12px var(--purple); }
+.glow-red { text-shadow: 0 0 12px var(--red); }
+
+.border-glow-accent { box-shadow: 0 0 0 1px var(--accent), 0 0 16px rgba(0,212,255,0.15); }
+.border-glow-green { box-shadow: 0 0 0 1px var(--green), 0 0 16px rgba(0,255,157,0.1); }
+.border-glow-amber { box-shadow: 0 0 0 1px var(--amber), 0 0 16px rgba(255,184,0,0.1); }
+.border-glow-purple { box-shadow: 0 0 0 1px var(--purple), 0 0 16px rgba(168,85,247,0.1); }
+.border-glow-red { box-shadow: 0 0 0 1px var(--red), 0 0 16px rgba(255,69,69,0.1); }
+
+/* Scan line overlay */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Monospace elements */
+.font-mono { font-family: 'IBM Plex Mono', monospace; }
+.font-display { font-family: 'Space Mono', monospace; }
+
+/* Blink cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+  color: var(--accent);
+  font-size: 0.75em;
+}
+
+/* Step reveal animation */
+@keyframes stepReveal {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.step-reveal {
+  animation: stepReveal 0.3s ease-out forwards;
+}
+
+/* Grid pattern background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Radial vignette */
+.vignette {
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(8,12,16,0.8) 100%);
+}

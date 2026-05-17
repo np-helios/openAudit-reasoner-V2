@@ -23,25 +23,25 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                   Next.js Frontend                   │
-│  Sidebar │ Agent Cards (live ReAct trace) │ Eval tab │
+│                   Next.js Frontend                  │
+│  Sidebar │ Agent Cards (live ReAct trace) │ Eval tab│
 └──────────────────────┬──────────────────────────────┘
                        │ SSE / POST
 ┌──────────────────────▼──────────────────────────────┐
-│                  FastAPI Backend                      │
-│  /api/reason/stream → asyncio.gather(4 agents)       │
-│  /api/agents        → persona definitions            │
-│  /api/health        → Ollama connectivity            │
+│                  FastAPI Backend                    │
+│  /api/reason/stream → asyncio.gather(4 agents)      │
+│  /api/agents        → persona definitions           │
+│  /api/health        → Ollama connectivity           │
 └──────────────────────┬──────────────────────────────┘
                        │ LangChain ReAct
 ┌──────────────────────▼──────────────────────────────┐
-│              4 LangChain ReAct Agents                 │
-│  ⚡ Fast  ✅ Careful  🎨 Creative  🕵️ Critical        │
-│  Tools: web_search · wikipedia · python_repl         │
+│              4 LangChain ReAct Agents               │
+│   Fast   Careful   Creative   Critical              │
+│  Tools: web_search · wikipedia · python_repl        │
 └──────────────────────┬──────────────────────────────┘
                        │ ChatOllama
 ┌──────────────────────▼──────────────────────────────┐
-│           Ollama (local, llama3 or any model)        │
+│           Ollama (local, llama3 or any model)       │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -74,8 +74,8 @@ ollama serve
 ### 2. Clone
 
 ```bash
-git clone <your-repo>
-cd openaudit-v2
+git clone https://github.com/np-helios/openAudit-reasoner-V2.git
+cd openAudit-reasoner-V2
 ```
 
 ### 3. Backend
@@ -85,7 +85,6 @@ cd backend
 python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-cp .env.example .env            # edit if needed
 uvicorn main:app --reload --port 8000
 ```
 
@@ -120,10 +119,10 @@ Each agent is a **LangChain ReAct executor** with distinct system prompt + tempe
 
 | Agent | Temperature | Behaviour |
 |---|---|---|
-| ⚡ Fast | 0.3 | Minimal steps, direct answers |
-| ✅ Careful | 0.1 | Methodical, verifies everything |
-| 🎨 Creative | 0.9 | Reframes problems, lateral thinking |
-| 🕵️ Critical | 0.5 | Finds flaws, surfaces edge cases |
+|  Fast | 0.3 | Minimal steps, direct answers |
+|  Careful | 0.1 | Methodical, verifies everything |
+|  Creative | 0.9 | Reframes problems, lateral thinking |
+|  Critical | 0.5 | Finds flaws, surfaces edge cases |
 
 All agents share the same tool set:
 - `web_search` — DuckDuckGo real-time search

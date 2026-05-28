@@ -17,7 +17,7 @@ from langchain_community.tools import WikipediaQueryRun
 
 AGENT_PERSONAS = {
     "fast": {
-        "key": "fast", "label": "Fast", "icon": "⚡", "color": "#F59E0B",
+        "key": "fast", "label": "Fast", "color": "#F59E0B",
         "description": "Quick, decisive answers with minimal deliberation",
         "system": (
             "You are a fast, efficient AI agent. Answer quickly and decisively. "
@@ -27,7 +27,7 @@ AGENT_PERSONAS = {
         "temperature": 0.3,
     },
     "careful": {
-        "key": "careful", "label": "Careful", "icon": "✅", "color": "#10B981",
+        "key": "careful", "label": "Careful", "color": "#10B981",
         "description": "Methodical step-by-step reasoning, double-checks everything",
         "system": (
             "You are a careful, methodical AI agent. Think step by step. "
@@ -37,7 +37,7 @@ AGENT_PERSONAS = {
         "temperature": 0.1,
     },
     "creative": {
-        "key": "creative", "label": "Creative", "icon": "🎨", "color": "#8B5CF6",
+        "key": "creative", "label": "Creative", "color": "#8B5CF6",
         "description": "Explores unconventional angles and novel framings",
         "system": (
             "You are a creative AI agent. Explore unconventional angles and unexpected framings. "
@@ -47,7 +47,7 @@ AGENT_PERSONAS = {
         "temperature": 0.9,
     },
     "critical": {
-        "key": "critical", "label": "Critical", "icon": "🕵️", "color": "#EF4444",
+        "key": "critical", "label": "Critical", "color": "#EF4444",
         "description": "Finds flaws, edge cases, and challenges assumptions",
         "system": (
             "You are a critical AI agent. Find flaws, edge cases, and unstated assumptions. "
@@ -68,7 +68,7 @@ _wiki_run = WikipediaQueryRun(api_wrapper=_wiki_api)
 def _clean_code(code: str) -> str:
     """Strip markdown fences from code before execution."""
     code = code.strip()
-    # Remove ```python ... ``` or ``` ... ```
+    
     code = re.sub(r'^```[a-zA-Z]*\n?', '', code)
     code = re.sub(r'\n?```$', '', code)
     code = code.strip()
